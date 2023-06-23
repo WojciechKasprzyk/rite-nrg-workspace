@@ -7,7 +7,7 @@ import { DepartmentsEntity } from './departments.models';
 export const DEPARTMENTS_FEATURE_KEY = 'departments';
 
 export interface DepartmentsState extends EntityState<DepartmentsEntity> {
-  selectedId?: string | number; // which Departments record has been selected
+  selectedId?: number; // which Departments record has been selected
   loaded: boolean; // has the Departments list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -38,6 +38,11 @@ const reducer = createReducer(
   on(DepartmentsActions.loadDepartmentsFailure, (state, { error }) => ({
     ...state,
     error,
+  })),
+
+  on(DepartmentsActions.selectDepartment, (state, {id}) => ({
+    ...state,
+    selectedId: id
   }))
 );
 

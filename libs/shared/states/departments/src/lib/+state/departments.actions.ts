@@ -12,3 +12,8 @@ export const loadDepartmentsFailure = createAction(
   '[Departments/API] Load Departments Failure',
   props<{ error: any }>()
 );
+
+export const selectDepartment = createAction(
+  '[Departments Page] Select Department',
+  props<{ id: number }>()
+)

@@ -19,7 +19,7 @@ export class DepartmentsFacade {
   allDepartments$ = this.store.pipe(
     select(DepartmentsSelectors.selectAllDepartments)
   );
-  selectedDepartments$ = this.store.pipe(
+  selectedDepartment$ = this.store.pipe(
     select(DepartmentsSelectors.selectEntity)
   );
 
@@ -29,5 +29,9 @@ export class DepartmentsFacade {
    */
   init() {
     this.store.dispatch(DepartmentsActions.initDepartments());
+  }
+
+  selectDepartment(id: number) {
+    this.store.dispatch(DepartmentsActions.selectDepartment({id}));
   }
 }

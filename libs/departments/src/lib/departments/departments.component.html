@@ -3,7 +3,8 @@
   <ng-container *ngIf="allDepartments.length; else noItemsFallback">
     <p-table [value]="allDepartments"
              selectionMode="single"
-             [(selection)]="selectedDepartment"
+             [selection]="selectedDepartment$ | async"
+             (selectionChange)="selectionChange($event)"
              dataKey="id"
              [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">

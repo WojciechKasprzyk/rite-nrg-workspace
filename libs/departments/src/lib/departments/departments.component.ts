@@ -14,8 +14,13 @@ import { Department } from "@rite-nrg-workspace/shared/api";
 export class DepartmentsComponent {
   private readonly departmentsFacade = inject(DepartmentsFacade);
   readonly allDepartments$ = this.departmentsFacade.allDepartments$;
-  selectedDepartment: Department | null = null;
+  readonly selectedDepartment$ = this.departmentsFacade.selectedDepartment$;
+
   constructor() {
     this.departmentsFacade.init();
+  }
+
+  selectionChange(department: Department) {
+    this.departmentsFacade.selectDepartment(department.id);
   }
 }
