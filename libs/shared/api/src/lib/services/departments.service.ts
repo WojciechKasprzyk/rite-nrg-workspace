@@ -1,14 +1,8 @@
-import { inject, Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
 import { Department } from "../models";
+import { HttpService } from "./_http.service";
 
 @Injectable()
-export class DepartmentsService {
-  private readonly url = 'api/departments';
-  private readonly http = inject(HttpClient);
-
-  fetchAll(): Observable<Department[]> {
-    return this.http.get<Department[]>(this.url);
-  }
+export class DepartmentsService extends HttpService<Department>{
+  protected override readonly url = 'api/departments';
 }
