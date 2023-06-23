@@ -9,6 +9,7 @@ import { UsersFacade } from "@rite-nrg-workspace/shared/states/users";
 })
 export class UsersComponent {
   private readonly usersFacade = inject(UsersFacade);
+  readonly allUsers$ = this.usersFacade.allUsers$;
 
   constructor() {
     this.usersFacade.init();
