@@ -7,6 +7,7 @@ import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { LetDirective } from "@ngrx/component";
 
 const PRIME_NG_COMPONENTS = [
   TableModule,
@@ -20,7 +21,8 @@ const PRIME_NG_COMPONENTS = [
     BrowserModule,
     BrowserAnimationsModule,
     ...PRIME_NG_COMPONENTS,
-    SharedStatesDepartmentsModule
+    SharedStatesDepartmentsModule,
+    LetDirective
   ],
   declarations: [DepartmentsComponent],
   exports: [

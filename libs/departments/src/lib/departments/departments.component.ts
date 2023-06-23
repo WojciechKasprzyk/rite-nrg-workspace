@@ -3,6 +3,7 @@ import {
   Component, inject,
 } from '@angular/core';
 import { DepartmentsFacade } from "@rite-nrg-workspace/shared/states/departments";
+import { Department } from "@rite-nrg-workspace/shared/api";
 
 @Component({
   selector: 'nrg-departments',
@@ -12,7 +13,8 @@ import { DepartmentsFacade } from "@rite-nrg-workspace/shared/states/departments
 })
 export class DepartmentsComponent {
   private readonly departmentsFacade = inject(DepartmentsFacade);
-
+  readonly allDepartments$ = this.departmentsFacade.allDepartments$;
+  selectedDepartment: Department | null = null;
   constructor() {
     this.departmentsFacade.init();
   }
