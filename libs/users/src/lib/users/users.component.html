@@ -1,12 +1,13 @@
 <h2>Users within department</h2>
 <ng-container *ngrxLet="departmentUsers$ as allUsers">
     <p-table [value]="allUsers"
-             [tableStyle]="{ 'min-width': '50rem' }">
+             [tableStyle]="{ 'min-width': '90vw' }">
       <ng-template pTemplate="header">
         <tr>
           <th style="width:100px">Id</th>
           <th style="width:25%">Name</th>
           <th>Email</th>
+          <th style="width:50px"></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-department>
@@ -14,6 +15,9 @@
           <td>{{ department.id }}</td>
           <td>{{ department.name }}</td>
           <td>{{ department.email }}</td>
+          <td>
+            <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger" />
+          </td>
         </tr>
       </ng-template>
     </p-table>
