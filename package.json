@@ -2,7 +2,9 @@
   "name": "@rite-nrg-workspace/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx run dms:serve:development"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.0.0",
