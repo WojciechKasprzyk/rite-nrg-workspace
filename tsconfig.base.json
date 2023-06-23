@@ -17,6 +17,9 @@
     "paths": {
       "@rite-nrg-workspace/departments": ["libs/departments/src/index.ts"],
       "@rite-nrg-workspace/shared/api": ["libs/shared/api/src/index.ts"],
+      "@rite-nrg-workspace/shared/states/users": [
+        "libs/shared/states/users/src/index.ts"
+      ],
       "@rite-nrg-workspace/users": ["libs/users/src/index.ts"]
     }
   },
