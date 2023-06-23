@@ -20,7 +20,7 @@ export class DepartmentsComponent {
     this.departmentsFacade.init();
   }
 
-  selectionChange(department: Department) {
-    this.departmentsFacade.selectDepartment(department.id);
+  selectionChange(department: Department | undefined) {
+    this.departmentsFacade.selectDepartment(department?.id);
   }
 }

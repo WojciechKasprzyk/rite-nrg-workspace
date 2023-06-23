@@ -42,3 +42,8 @@ export const selectEntity = createSelector(
   selectSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
 );
+
+export const selectDepartmentEntityUsers = createSelector(
+  selectEntity,
+  (department) => department && department.users
+);

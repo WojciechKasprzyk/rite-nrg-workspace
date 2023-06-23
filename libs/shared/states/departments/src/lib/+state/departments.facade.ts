@@ -13,14 +13,17 @@ export class DepartmentsFacade {
    * Combine pieces of state using createSelector,
    * and expose them as observables through the facade.
    */
-  loaded$ = this.store.pipe(
+  readonly loaded$ = this.store.pipe(
     select(DepartmentsSelectors.selectDepartmentsLoaded)
   );
-  allDepartments$ = this.store.pipe(
+  readonly allDepartments$ = this.store.pipe(
     select(DepartmentsSelectors.selectAllDepartments)
   );
-  selectedDepartment$ = this.store.pipe(
+  readonly selectedDepartment$ = this.store.pipe(
     select(DepartmentsSelectors.selectEntity)
+  );
+  readonly selectedDepartmentUsersIds$ = this.store.pipe(
+    select(DepartmentsSelectors.selectDepartmentEntityUsers)
   );
 
   /**
@@ -31,7 +34,7 @@ export class DepartmentsFacade {
     this.store.dispatch(DepartmentsActions.initDepartments());
   }
 
-  selectDepartment(id: number) {
+  selectDepartment(id: number| undefined) {
     this.store.dispatch(DepartmentsActions.selectDepartment({id}));
   }
 }

@@ -15,5 +15,5 @@ export const loadDepartmentsFailure = createAction(
 
 export const selectDepartment = createAction(
   '[Departments Page] Select Department',
-  props<{ id: number }>()
+  props<{ id: number | undefined }>()
 )
