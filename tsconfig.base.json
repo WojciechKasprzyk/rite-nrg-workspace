@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@rite-nrg-workspace/departments": ["libs/departments/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
