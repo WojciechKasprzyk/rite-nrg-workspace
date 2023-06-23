@@ -1,7 +1,6 @@
+import { Department } from "@rite-nrg-workspace/shared/api";
+
 /**
  * Interface for the 'Departments' data
  */
-export interface DepartmentsEntity {
-  id: string | number; // Primary ID
-  name: string;
-}
+export type DepartmentsEntity = Department;

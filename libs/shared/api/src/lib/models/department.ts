@@ -1,5 +1,5 @@
 export interface Department {
-  id: number;
+  id: number; // Primary ID
   name: string;
   users: number[];
 }

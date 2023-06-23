@@ -5,6 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import * as fromDepartments from './+state/departments.reducer';
 import { DepartmentsEffects } from './+state/departments.effects';
 import { DepartmentsFacade } from './+state/departments.facade';
+import { SharedApiModule } from "@rite-nrg-workspace/shared/api";
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { DepartmentsFacade } from './+state/departments.facade';
       fromDepartments.departmentsReducer
     ),
     EffectsModule.forFeature([DepartmentsEffects]),
+    SharedApiModule
   ],
   providers: [DepartmentsFacade],
 })
