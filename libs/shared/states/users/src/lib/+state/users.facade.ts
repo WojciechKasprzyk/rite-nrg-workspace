@@ -13,9 +13,9 @@ export class UsersFacade {
    * Combine pieces of state using createSelector,
    * and expose them as observables through the facade.
    */
-  loaded$ = this.store.pipe(select(UsersSelectors.selectUsersLoaded));
-  allUsers$ = this.store.pipe(select(UsersSelectors.selectAllUsers));
-  selectedUsers$ = this.store.pipe(select(UsersSelectors.selectEntity));
+  readonly loaded$ = this.store.pipe(select(UsersSelectors.selectUsersLoaded));
+  readonly allUsers$ = this.store.pipe(select(UsersSelectors.selectAllUsers));
+  readonly selectedUsers$ = this.store.pipe(select(UsersSelectors.selectEntity));
 
   /**
    * Use the initialization action to perform one
@@ -23,5 +23,9 @@ export class UsersFacade {
    */
   init() {
     this.store.dispatch(UsersActions.initUsers());
+  }
+
+  selectEntitiesByIds(ids: number[]) {
+    return this.store.select(UsersSelectors.selectEntitiesByIds(ids));
   }
 }

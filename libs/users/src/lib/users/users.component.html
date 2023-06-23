@@ -1,10 +1,10 @@
 <h2>Users within department</h2>
-<ng-container *ngrxLet="allUsers$ as allUsers">
+<ng-container *ngrxLet="departmentUsers$ as allUsers">
     <p-table [value]="allUsers"
              [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">
         <tr>
-          <th>Id</th>
+          <th style="width:100px">Id</th>
           <th>Name</th>
         </tr>
       </ng-template>

@@ -37,3 +37,8 @@ export const selectEntity = createSelector(
   selectSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
 );
+
+export const selectEntitiesByIds = (ids: number[]) => createSelector(
+  selectAllUsers,
+  (entities) => entities.filter(entity => ids.includes(entity.id))
+);
