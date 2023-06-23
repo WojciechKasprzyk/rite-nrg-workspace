@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { UsersFacade } from "@rite-nrg-workspace/shared/states/users";
 
 @Component({
   selector: 'nrg-users',
@@ -6,4 +7,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./users.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersComponent {}
+export class UsersComponent {
+  private readonly usersFacade = inject(UsersFacade);
+
+  constructor() {
+    this.usersFacade.init();
+  }
+}
