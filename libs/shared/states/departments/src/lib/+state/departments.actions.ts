@@ -17,3 +17,18 @@ export const selectDepartment = createAction(
   '[Departments Page] Select Department',
   props<{ id: number | undefined }>()
 )
+
+
+export const deleteDepartment = createAction(
+  '[Departments/API] Delete Department',
+  props<{ id: number }>()
+);
+
+export const deleteDepartmentSuccess = createAction(
+  '[Departments/API] Delete Department Success'
+);
+
+export const deleteDepartmentFailure = createAction(
+  '[Departments/API] Delete Department Failure',
+  props<{ error: any }>()
+);

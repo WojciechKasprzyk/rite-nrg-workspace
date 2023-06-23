@@ -10,17 +10,46 @@ export class DepartmentsEffects {
   private readonly actions$ = inject(Actions);
   private readonly departmentsService = inject(DepartmentsService);
 
-  init$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(DepartmentsActions.initDepartments),
-      switchMap(() => this.departmentsService.fetchAll()),
-      map((departments) =>
-        DepartmentsActions.loadDepartmentsSuccess({ departments })
+  readonly init$ = this.createInitEffect();
+  readonly delete$ = this.createDeleteEffect();
+  readonly deleteSuccess$ = this.createDeleteSuccessEffect();
+
+  private createInitEffect() {
+    return createEffect(() =>
+      this.actions$.pipe(
+        ofType(DepartmentsActions.initDepartments),
+        switchMap(() => this.departmentsService.fetchAll()),
+        map((departments) =>
+          DepartmentsActions.loadDepartmentsSuccess({departments})
+        ),
+        catchError((error) => {
+          console.error('Error', error);
+          return of(DepartmentsActions.loadDepartmentsFailure({error}));
+        })
+      )
+    );
+  }
+
+  private createDeleteEffect() {
+    return createEffect(() =>
+      this.actions$.pipe(
+        ofType(DepartmentsActions.deleteDepartment),
+        switchMap(({id}) => this.departmentsService.delete(id)),
+        map(() => DepartmentsActions.deleteDepartmentSuccess()),
+        catchError((error) => {
+          console.error('Error', error);
+          return of(DepartmentsActions.deleteDepartmentFailure({error}));
+        })
+      )
+    );
+  }
+
+  private createDeleteSuccessEffect() {
+    return createEffect(() =>
+      this.actions$.pipe(
+        ofType(DepartmentsActions.deleteDepartmentSuccess),
+        map(() => DepartmentsActions.initDepartments())
       ),
-      catchError((error) => {
-        console.error('Error', error);
-        return of(DepartmentsActions.loadDepartmentsFailure({ error }));
-      })
-    )
-  );
+    );
+  }
 }

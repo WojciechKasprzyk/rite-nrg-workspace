@@ -29,4 +29,8 @@ export class DepartmentsFacade {
   selectDepartment(id: number| undefined) {
     this.store.dispatch(DepartmentsActions.selectDepartment({id}));
   }
+
+  delete(id: number) {
+    this.store.dispatch(DepartmentsActions.deleteDepartment({id}))
+  }
 }

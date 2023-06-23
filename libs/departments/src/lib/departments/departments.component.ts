@@ -23,4 +23,8 @@ export class DepartmentsComponent {
   selectionChange(department: Department | undefined) {
     this.departmentsFacade.selectDepartment(department?.id);
   }
+
+  deleteDepartment(id: number) {
+    this.departmentsFacade.delete(id);
+  }
 }

@@ -19,7 +19,10 @@
           <td>{{ department.id }}</td>
           <td>{{ department.name }}</td>
           <td>
-            <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger" />
+            <p-button icon="pi pi-trash"
+                      styleClass="p-button-rounded p-button-danger"
+                      (click)="deleteDepartment(department.id)"
+            />
           </td>
         </tr>
       </ng-template>
