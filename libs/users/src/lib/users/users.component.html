@@ -10,13 +10,16 @@
           <th style="width:50px"></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-department>
-        <tr [pSelectableRow]="department">
-          <td>{{ department.id }}</td>
-          <td>{{ department.name }}</td>
-          <td>{{ department.email }}</td>
+      <ng-template pTemplate="body" let-user>
+        <tr [pSelectableRow]="user">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
           <td>
-            <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger" />
+            <p-button icon="pi pi-trash"
+                      styleClass="p-button-rounded p-button-danger"
+                      (click)="deleteUser(user.id)"
+            />
           </td>
         </tr>
       </ng-template>

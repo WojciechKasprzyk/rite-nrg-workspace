@@ -13,9 +13,9 @@ export class UsersFacade {
    * Combine pieces of state using createSelector,
    * and expose them as observables through the facade.
    */
-  readonly loaded$ = this.store.pipe(select(UsersSelectors.selectUsersLoaded));
-  readonly allUsers$ = this.store.pipe(select(UsersSelectors.selectAllUsers));
-  readonly selectedUsers$ = this.store.pipe(select(UsersSelectors.selectEntity));
+  readonly loaded$ = this.store.select(UsersSelectors.selectUsersLoaded);
+  readonly allUsers$ = this.store.select(UsersSelectors.selectAllUsers);
+  readonly selectedUsers$ = this.store.select(UsersSelectors.selectEntity);
 
   /**
    * Use the initialization action to perform one
@@ -27,5 +27,9 @@ export class UsersFacade {
 
   selectEntitiesByIds(ids: number[]) {
     return this.store.select(UsersSelectors.selectEntitiesByIds(ids));
+  }
+
+  delete(id: number) {
+    this.store.dispatch(UsersActions.deleteUser({id}));
   }
 }

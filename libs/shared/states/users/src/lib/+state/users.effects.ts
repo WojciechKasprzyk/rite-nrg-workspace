@@ -10,15 +10,44 @@ export class UsersEffects {
   private readonly actions$ = inject(Actions);
   private readonly usersService = inject(UsersService);
 
-  init$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(UsersActions.initUsers),
-      switchMap(() => this.usersService.fetchAll()),
-      map((users) => UsersActions.loadUsersSuccess({ users })),
-      catchError((error) => {
-        console.error('Error', error);
-        return of(UsersActions.loadUsersFailure({ error }));
-      })
-    )
-  );
+  readonly init$ = this.createInitEffect();
+  readonly delete$ = this.createDeleteEffect();
+  readonly deleteSuccess$ = this.createDeleteSuccessEffect();
+
+  private createInitEffect() {
+    return createEffect(() =>
+      this.actions$.pipe(
+        ofType(UsersActions.initUsers),
+        switchMap(() => this.usersService.fetchAll()),
+        map((users) => UsersActions.loadUsersSuccess({ users })),
+        catchError((error) => {
+          console.error('Error', error);
+          return of(UsersActions.loadUsersFailure({ error }));
+        })
+      )
+    );
+  }
+
+  private createDeleteEffect() {
+    return createEffect(() =>
+      this.actions$.pipe(
+        ofType(UsersActions.deleteUser),
+        switchMap(({id}) => this.usersService.delete(id)),
+        map(() => UsersActions.deleteUserSuccess()),
+        catchError((error) => {
+          console.error('Error', error);
+          return of(UsersActions.loadUsersFailure({ error }));
+        })
+      )
+    );
+  }
+
+  private createDeleteSuccessEffect() {
+    return createEffect(() =>
+      this.actions$.pipe(
+        ofType(UsersActions.deleteUserSuccess),
+        map(() => UsersActions.initUsers())
+      ),
+    );
+  }
 }

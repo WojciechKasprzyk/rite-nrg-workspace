@@ -11,4 +11,8 @@ export class UsersService {
   fetchAll(): Observable<User[]> {
     return this.http.get<User[]>(this.url);
   }
+
+  delete(id: number){
+    return this.http.delete(`${this.url}/${id}`);
+  }
 }

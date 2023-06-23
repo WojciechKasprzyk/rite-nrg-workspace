@@ -19,6 +19,10 @@ export class UsersComponent {
     this.usersFacade.init();
   }
 
+  deleteUser(id: number) {
+    this.usersFacade.delete(id);
+  }
+
   private getDepartmentUsersStream() {
     return this.selectedDepartmentUsersIds$
       .pipe(
