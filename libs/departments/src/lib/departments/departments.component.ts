@@ -1,7 +1,8 @@
 import {
   ChangeDetectionStrategy,
-  Component,
+  Component, inject,
 } from '@angular/core';
+import { DepartmentsFacade } from "@rite-nrg-workspace/shared/states/departments";
 
 @Component({
   selector: 'nrg-departments',
@@ -9,4 +10,10 @@ import {
   styleUrls: ['./departments.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DepartmentsComponent {}
+export class DepartmentsComponent {
+  private readonly departmentsFacade = inject(DepartmentsFacade);
+
+  constructor() {
+    this.departmentsFacade.init();
+  }
+}

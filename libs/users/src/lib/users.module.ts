@@ -4,11 +4,13 @@ import { UsersComponent } from './users/users.component';
 import { SharedStatesUsersModule } from "@rite-nrg-workspace/shared/states/users";
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    SharedStatesUsersModule
+  ],
   declarations: [UsersComponent],
   exports: [
-    UsersComponent,
-    SharedStatesUsersModule
+    UsersComponent
   ]
 })
 export class UsersModule {}
