@@ -1,6 +1,5 @@
 <h2>Departments</h2>
 <ng-container *ngrxLet="allDepartments$ as allDepartments">
-  <ng-container *ngIf="allDepartments.length; else noItemsFallback">
     <p-table [value]="allDepartments"
              selectionMode="single"
              [selection]="selectedDepartment$ | async"
@@ -26,9 +25,10 @@
           </td>
         </tr>
       </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7">No departments found.</td>
+        </tr>
+      </ng-template>
     </p-table>
-  </ng-container>
-  <ng-template #noItemsFallback>
-    No Items Yet
-  </ng-template>
 </ng-container>
