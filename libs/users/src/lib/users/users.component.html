@@ -1,7 +1,7 @@
 <h2>Users within department</h2>
 <ng-container *ngrxLet="departmentUsers$ as allUsers">
     <p-table [value]="allUsers"
-             [loading]="loading$ | async"
+             [loading]="(loading$ | async)!"
              [tableStyle]="{ 'min-width': '90vw' }">
       <ng-template pTemplate="header">
         <tr>
