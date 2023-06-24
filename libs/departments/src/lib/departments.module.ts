@@ -1,20 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DepartmentsComponent } from './departments/departments.component';
-import { SharedStatesDepartmentsModule } from "@rite-nrg-workspace/shared/states/departments";
-import { TableModule } from "primeng/table";
-import { ButtonModule } from "primeng/button";
-import { DialogModule } from "primeng/dialog";
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { LetDirective } from "@ngrx/component";
-import { DialogComponent, TableComponent } from "@rite-nrg-workspace/shared/ui";
+import { SharedStatesDepartmentsModule } from '@rite-nrg-workspace/shared/states/departments';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LetDirective } from '@ngrx/component';
+import { DialogComponent, TableComponent } from '@rite-nrg-workspace/shared/ui';
+import { DepartmentFormComponent } from "./departments/components";
 
-const PRIME_NG_COMPONENTS = [
-  TableModule,
-  ButtonModule,
-  DialogModule,
-]
+const PRIME_NG_COMPONENTS = [TableModule, ButtonModule, DialogModule];
 
 @NgModule({
   imports: [
@@ -25,11 +22,9 @@ const PRIME_NG_COMPONENTS = [
     SharedStatesDepartmentsModule,
     LetDirective,
     TableComponent,
-    DialogComponent
+    DialogComponent,
   ],
-  declarations: [DepartmentsComponent],
-  exports: [
-    DepartmentsComponent,
-  ]
+  declarations: [DepartmentsComponent, DepartmentFormComponent],
+  exports: [DepartmentsComponent],
 })
 export class DepartmentsModule {}
