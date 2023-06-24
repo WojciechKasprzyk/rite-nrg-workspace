@@ -16,6 +16,8 @@ export class DepartmentsComponent {
   readonly allDepartments$ = this.departmentsFacade.allDepartments$;
   readonly selectedDepartment$ = this.departmentsFacade.selectedDepartment$;
   readonly loading$ = this.departmentsFacade.loading$;
+  readonly displayedColumns = ['name'] as const;
+  readonly fallbackMessage = 'No departments found.';
 
   constructor() {
     this.departmentsFacade.init();

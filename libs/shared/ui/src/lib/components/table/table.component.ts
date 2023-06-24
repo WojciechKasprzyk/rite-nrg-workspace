@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from "primeng/button";
 import { SharedModule } from "primeng/api";
 import { TableModule } from "primeng/table";
-
-type TableEntry = {id: number} & Record<string, string>
+import { Entry } from "@rite-nrg-workspace/shared/api";
 
 @Component({
   selector: 'nrg-table',
@@ -14,17 +13,17 @@ type TableEntry = {id: number} & Record<string, string>
   styleUrls: ['./table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableComponent {
-  @Input({required: true}) data!: TableEntry[];
+export class TableComponent<T extends Entry> {
+  @Input({required: true}) data!: T[];
   @Input({required: true}) loading!: boolean;
-  @Input() selected: TableEntry | undefined;
-  @Input() displayedColumns: string[] = [];
+  @Input() selection: T | undefined;
+  @Input() displayedColumns: Readonly<string[]> = [];
   @Input() fallbackMessage: string = 'No entries found.';
 
+  @Output() selectionChange = new EventEmitter<T | undefined>();
   @Output() entryDelete = new EventEmitter<number>();
-  @Output() selectionChange = new EventEmitter<TableEntry>();
 
-  handleSelectionChange(entry: TableEntry) {
+  handleSelectionChange(entry: T | undefined) {
     this.selectionChange.observed && this.selectionChange.emit(entry);
   }
 

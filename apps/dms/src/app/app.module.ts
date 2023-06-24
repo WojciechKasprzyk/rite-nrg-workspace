@@ -8,6 +8,7 @@ import { UsersModule } from "@rite-nrg-workspace/users";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { SharedUiModule } from "@rite-nrg-workspace/shared/ui";
 
 
 const COMPONENTS = [
@@ -21,6 +22,7 @@ const COMPONENTS = [
     BrowserModule,
     RouterModule.forRoot(appRoutes, {initialNavigation: 'enabledBlocking'}),
     ...COMPONENTS,
+    SharedUiModule,
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot(),
