@@ -32,3 +32,17 @@ export const deleteDepartmentFailure = createAction(
   '[Departments/API] Delete Department Failure',
   props<{ error: any }>()
 );
+
+export const createDepartment = createAction(
+  '[Departments/API] Create Department',
+  props<{ name: string }>()
+);
+
+export const createDepartmentSuccess = createAction(
+  '[Departments/API] Create Department Success'
+);
+
+export const createDepartmentFailure = createAction(
+  '[Departments/API] Create Department Failure',
+  props<{ error: any }>()
+);

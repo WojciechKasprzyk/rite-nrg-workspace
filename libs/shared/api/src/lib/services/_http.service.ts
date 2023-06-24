@@ -13,4 +13,8 @@ export abstract class HttpService<T> {
   delete(id: number){
     return this.http.delete(`${this.url}/${id}`);
   }
+
+  create(entry: Partial<T>) {
+    return this.http.post(this.url, entry);
+  }
 }

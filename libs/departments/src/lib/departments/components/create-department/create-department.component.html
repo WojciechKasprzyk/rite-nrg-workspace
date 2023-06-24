@@ -1,0 +1,18 @@
+<p-dialog header="Create department"
+          (visibleChange)="redirectBack()"
+          [visible]="true"
+          [modal]="true"
+          [style]="{width: '50vw'}">
+  <ng-content />
+  <form [formGroup]="form" id="create-department-form">
+    <div class="input">
+      <label htmlFor="name">Username*</label>
+      <input pInputText
+             formControlName="name"
+             id="name" />
+    </div>
+  </form>
+    <ng-template pTemplate="footer">
+      <p-button (click)="handleConfirm()" label="Confirm" styleClass="p-button-text" type="submit" form="create-department-form"/>
+    </ng-template>
+</p-dialog>

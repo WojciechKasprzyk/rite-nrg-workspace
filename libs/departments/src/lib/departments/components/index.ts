@@ -1,1 +1,1 @@
-export * from './department-form/department-form.component';
+export * from './create-department/create-department.component';

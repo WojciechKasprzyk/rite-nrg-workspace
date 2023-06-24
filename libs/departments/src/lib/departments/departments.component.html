@@ -4,9 +4,7 @@
   selectedDepartment: selectedDepartment$
 } as $">
   <h2>Departments</h2>
-  <nrg-dialog header="Create department"
-              buttonLabel="Create department"
-  />
+  <nrg-create-department-button />
   <nrg-table [data]="$.allDepartments"
              [loading]="$.loading"
              [selection]="$.selectedDepartment"
@@ -16,3 +14,4 @@
              (entryDelete)="deleteDepartment($event)"
   />
 </ng-container>
+<router-outlet />

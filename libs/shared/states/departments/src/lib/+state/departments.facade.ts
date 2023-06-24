@@ -5,6 +5,7 @@ import * as DepartmentsActions from './departments.actions';
 import * as DepartmentsFeature from './departments.reducer';
 import * as DepartmentsSelectors from './departments.selectors';
 import { map } from "rxjs";
+import { Department } from "@rite-nrg-workspace/shared/api";
 
 @Injectable()
 export class DepartmentsFacade {
@@ -34,5 +35,9 @@ export class DepartmentsFacade {
 
   delete(id: number) {
     this.store.dispatch(DepartmentsActions.deleteDepartment({id}))
+  }
+
+  createDepartment(department: Omit<Department, 'id' | 'users'>) {
+    this.store.dispatch(DepartmentsActions.createDepartment(department));
   }
 }
