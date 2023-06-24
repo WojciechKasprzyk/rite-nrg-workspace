@@ -2,7 +2,7 @@
 <ng-container *ngrxLet="allDepartments$ as allDepartments">
     <p-table [value]="allDepartments"
              selectionMode="single"
-             [loading]="loading$ | async"
+             [loading]="(loading$ | async)!"
              [selection]="selectedDepartment$ | async"
              (selectionChange)="selectionChange($event)"
              dataKey="id"
