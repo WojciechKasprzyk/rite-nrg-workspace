@@ -21,6 +21,9 @@ export class DepartmentsEffects {
   readonly create$ = this.createCreateEffect();
   readonly createSuccess$ = this.createCreateSuccessEffect();
 
+  readonly edit$ = this.createEditEffect();
+  readonly editSuccess$ = this.createEditSuccessEffect();
+
   private createInitEffect() {
     return createEffect(() =>
       this.actions$.pipe(
@@ -78,6 +81,30 @@ export class DepartmentsEffects {
     return createEffect(() =>
       this.actions$.pipe(
         ofType(DepartmentsActions.createDepartmentSuccess),
+        tap(() => this.router.navigateByUrl('')),
+        map(() => DepartmentsActions.initDepartments())
+      ),
+    );
+  }
+
+  private createEditEffect() {
+    return createEffect(() =>
+      this.actions$.pipe(
+        ofType(DepartmentsActions.editDepartment),
+        switchMap((entry) => this.departmentsService.update(entry)),
+        map(() => DepartmentsActions.editDepartmentSuccess()),
+        catchError((error) => {
+          console.error('Error', error);
+          return of(DepartmentsActions.editDepartmentFailure({error}));
+        })
+      )
+    );
+  }
+
+  private createEditSuccessEffect() {
+    return createEffect(() =>
+      this.actions$.pipe(
+        ofType(DepartmentsActions.editDepartmentSuccess),
         tap(() => this.router.navigateByUrl('')),
         map(() => DepartmentsActions.initDepartments())
       ),

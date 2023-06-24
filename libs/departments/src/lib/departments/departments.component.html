@@ -4,14 +4,14 @@
   selectedDepartment: selectedDepartment$
 } as $">
   <h2>Departments</h2>
-  <nrg-create-department-button />
+  <nrg-create-edit-department-button />
   <nrg-table [data]="$.allDepartments"
              [loading]="$.loading"
              [selection]="$.selectedDepartment"
              [displayedColumns]="displayedColumns"
              [fallbackMessage]="fallbackMessage"
              (selectionChange)="selectionChange($event)"
-             (entryDelete)="deleteDepartment($event)"
-  />
+             (entryEdit)="editDepartment($event)"
+             (entryDelete)="deleteDepartment($event)"/>
 </ng-container>
 <router-outlet />

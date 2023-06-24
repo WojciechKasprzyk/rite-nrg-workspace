@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: 'nrg-create-department-button',
-  templateUrl: './create-department-button.component.html',
-  styleUrls: ['./create-department-button.component.scss'],
+  selector: 'nrg-create-edit-department-button',
+  templateUrl: './create-edit-department-button.component.html',
+  styleUrls: ['./create-edit-department-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreateDepartmentButtonComponent {
+export class CreateEditDepartmentButtonComponent {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 

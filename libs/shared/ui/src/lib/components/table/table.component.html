@@ -10,6 +10,7 @@
       <th style="width:100px">Id</th>
       <th *ngFor="let col of displayedColumns">{{col}}</th>
       <th style="width:50px"></th>
+      <th style="width:50px"></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-entry>
@@ -17,9 +18,15 @@
       <td>{{ entry.id }}</td>
       <td *ngFor="let col of displayedColumns">{{entry[col]}}</td>
       <td>
+        <p-button icon="pi pi-pencil"
+                  styleClass="p-button-rounded"
+                  (click)="editEntry(entry.id)"
+        />
+      </td>
+      <td>
         <p-button icon="pi pi-trash"
                   styleClass="p-button-rounded p-button-danger"
-                  (click)="deleteDepartment(entry.id)"
+                  (click)="deleteEntry(entry.id)"
         />
       </td>
     </tr>

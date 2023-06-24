@@ -17,4 +17,8 @@ export abstract class HttpService<T> {
   create(entry: Partial<T>) {
     return this.http.post(this.url, entry);
   }
+
+  update(entry: Partial<T> & {id: number}) {
+    return this.http.put(`${this.url}/${entry.id}`, entry);
+  }
 }

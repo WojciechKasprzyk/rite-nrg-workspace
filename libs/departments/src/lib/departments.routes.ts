@@ -1,10 +1,14 @@
 import { Route } from '@angular/router';
-import { CreateDepartmentComponent } from "./departments/components";
+import { CreateEditDepartmentComponent } from "./departments/components";
 
 export const departmentsRoutes: Route[] = [
   {
     path: "create-department",
-    component: CreateDepartmentComponent,
+    component: CreateEditDepartmentComponent,
     pathMatch: 'full'
+  },
+  {
+    path: ':id',
+    component: CreateEditDepartmentComponent
   }
 ];

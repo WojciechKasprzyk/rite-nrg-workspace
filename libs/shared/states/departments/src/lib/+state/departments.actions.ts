@@ -46,3 +46,17 @@ export const createDepartmentFailure = createAction(
   '[Departments/API] Create Department Failure',
   props<{ error: any }>()
 );
+
+export const editDepartment = createAction(
+  '[Departments/API] Edit Department',
+  props<{ name: string, id: number }>()
+);
+
+export const editDepartmentSuccess = createAction(
+  '[Departments/API] Edit Department Success'
+);
+
+export const editDepartmentFailure = createAction(
+  '[Departments/API] Edit Department Failure',
+  props<{ error: any }>()
+);

@@ -6,6 +6,7 @@ import * as DepartmentsFeature from './departments.reducer';
 import * as DepartmentsSelectors from './departments.selectors';
 import { map } from "rxjs";
 import { Department } from "@rite-nrg-workspace/shared/api";
+import { selectEntityById } from "./departments.selectors";
 
 @Injectable()
 export class DepartmentsFacade {
@@ -39,5 +40,13 @@ export class DepartmentsFacade {
 
   createDepartment(department: Omit<Department, 'id' | 'users'>) {
     this.store.dispatch(DepartmentsActions.createDepartment(department));
+  }
+
+  editDepartment(department: Omit<Department, 'users'>) {
+    this.store.dispatch(DepartmentsActions.editDepartment(department));
+  }
+
+  getDepartmentById(id: number) {
+    return this.store.select(DepartmentsSelectors.selectEntityById(id));
   }
 }

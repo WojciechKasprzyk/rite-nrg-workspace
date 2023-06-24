@@ -19,7 +19,10 @@ const COMPONENTS = [
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, {initialNavigation: 'enabledBlocking'}),
+    RouterModule.forRoot(appRoutes, {
+      initialNavigation: 'enabledBlocking',
+      bindToComponentInputs: true
+    }),
     ...COMPONENTS,
 
     StoreModule.forRoot({}),

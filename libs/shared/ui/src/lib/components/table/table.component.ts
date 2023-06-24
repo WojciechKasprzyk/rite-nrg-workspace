@@ -22,13 +22,19 @@ export class TableComponent<T extends Entry> {
 
   @Output() selectionChange = new EventEmitter<T | undefined>();
   @Output() entryDelete = new EventEmitter<number>();
+  @Output() entryEdit = new EventEmitter<number>();
 
   handleSelectionChange(entry: T | undefined) {
     this.selectionChange.observed && this.selectionChange.emit(entry);
   }
 
-  deleteDepartment(id: number) {
+  deleteEntry(id: number) {
     this.entryDelete.observed && this.entryDelete.emit(id);
+  }
+
+  editEntry(id: number) {
+    this.entryEdit.observed && this.entryEdit.emit(id);
+
   }
 
 }

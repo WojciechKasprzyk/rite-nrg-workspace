@@ -9,9 +9,8 @@ import { TableComponent } from '@rite-nrg-workspace/shared/ui';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { CreateDepartmentComponent } from './departments/components';
+import { CreateEditDepartmentButtonComponent, CreateEditDepartmentComponent } from './departments/components';
 import { DialogModule } from 'primeng/dialog';
-import { CreateDepartmentButtonComponent } from './departments/components/create-department-button/create-department-button.component';
 import { RouterModule } from "@angular/router";
 import { departmentsRoutes } from "./departments.routes";
 
@@ -31,8 +30,8 @@ const PRIME_NG_COMPONENTS = [InputTextModule, ButtonModule, DialogModule];
   ],
   declarations: [
     DepartmentsComponent,
-    CreateDepartmentComponent,
-    CreateDepartmentButtonComponent,
+    CreateEditDepartmentComponent,
+    CreateEditDepartmentButtonComponent,
   ],
   exports: [DepartmentsComponent],
 })

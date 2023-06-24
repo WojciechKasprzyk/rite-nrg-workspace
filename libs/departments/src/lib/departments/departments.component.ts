@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { DepartmentsFacade } from "@rite-nrg-workspace/shared/states/departments";
 import { Department } from "@rite-nrg-workspace/shared/api";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'nrg-departments',
@@ -12,6 +13,8 @@ import { Department } from "@rite-nrg-workspace/shared/api";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DepartmentsComponent {
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
   private readonly departmentsFacade = inject(DepartmentsFacade);
   readonly allDepartments$ = this.departmentsFacade.allDepartments$;
   readonly selectedDepartment$ = this.departmentsFacade.selectedDepartment$;
@@ -29,5 +32,9 @@ export class DepartmentsComponent {
 
   deleteDepartment(id: number) {
     this.departmentsFacade.delete(id);
+  }
+
+  editDepartment(id: number) {
+    this.router.navigate([id], {relativeTo: this.route});
   }
 }
