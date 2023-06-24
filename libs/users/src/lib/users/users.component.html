@@ -1,7 +1,10 @@
+<ng-container *ngrxLet="{
+  departmentUsers: departmentUsers$,
+  loading: loading$,
+} as $">
 <h2>Users within department</h2>
-<ng-container *ngrxLet="departmentUsers$ as allUsers">
-    <p-table [value]="allUsers"
-             [loading]="(loading$ | async)!"
+    <p-table [value]="$.departmentUsers"
+             [loading]="$.loading"
              [tableStyle]="{ 'min-width': '90vw' }">
       <ng-template pTemplate="header">
         <tr>
