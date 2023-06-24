@@ -3,34 +3,10 @@
   loading: loading$,
 } as $">
 <h2>Users within department</h2>
-    <p-table [value]="$.departmentUsers"
+  <nrg-table [data]="$.departmentUsers"
              [loading]="$.loading"
-             [tableStyle]="{ 'min-width': '90vw' }">
-      <ng-template pTemplate="header">
-        <tr>
-          <th style="width:100px">Id</th>
-          <th style="width:25%">Name</th>
-          <th>Email</th>
-          <th style="width:50px"></th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-user>
-        <tr [pSelectableRow]="user">
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>
-            <p-button icon="pi pi-trash"
-                      styleClass="p-button-rounded p-button-danger"
-                      (click)="deleteUser(user.id)"
-            />
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="emptymessage">
-        <tr>
-          <td colspan="7">No users found.</td>
-        </tr>
-      </ng-template>
-    </p-table>
+             [displayedColumns]="displayedColumns"
+             [fallbackMessage]="fallbackMessage"
+             (entryDelete)="deleteUser($event)"
+  />
 </ng-container>

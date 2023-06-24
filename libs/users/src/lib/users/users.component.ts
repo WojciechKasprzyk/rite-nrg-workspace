@@ -15,6 +15,8 @@ export class UsersComponent {
   private readonly selectedDepartmentUsersIds$ = this.departmentsFacade.selectedDepartmentUsersIds$;
   readonly departmentUsers$ = this.getDepartmentUsersStream();
   readonly loading$ = this.usersFacade.loading$;
+  readonly displayedColumns = ['name', 'email'] as const;
+  readonly fallbackMessage = 'No users found.';
 
   constructor() {
     this.usersFacade.init();

@@ -8,6 +8,7 @@ import { TableModule } from "primeng/table";
 import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
 import { LetDirective } from "@ngrx/component";
+import { TableComponent } from "@rite-nrg-workspace/shared/ui";
 
 const PRIME_NG_COMPONENTS = [
   TableModule,
@@ -22,7 +23,8 @@ const PRIME_NG_COMPONENTS = [
     BrowserAnimationsModule,
     ...PRIME_NG_COMPONENTS,
     SharedStatesUsersModule,
-    LetDirective
+    LetDirective,
+    TableComponent
   ],
   declarations: [UsersComponent],
   exports: [
