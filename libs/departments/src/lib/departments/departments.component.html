@@ -3,14 +3,16 @@
   loading: loading$,
   selectedDepartment: selectedDepartment$
 } as $">
-<h2>Departments</h2>
-<nrg-table [data]="$.allDepartments"
-           [loading]="$.loading"
-           [selection]="$.selectedDepartment"
-           [displayedColumns]="displayedColumns"
-           [fallbackMessage]="fallbackMessage"
-           (selectionChange)="selectionChange($event)"
-           (entryDelete)="deleteDepartment($event)"
-/>
+  <h2>Departments</h2>
+  <nrg-dialog header="Create department"
+              buttonLabel="Create department"
+  />
+  <nrg-table [data]="$.allDepartments"
+             [loading]="$.loading"
+             [selection]="$.selectedDepartment"
+             [displayedColumns]="displayedColumns"
+             [fallbackMessage]="fallbackMessage"
+             (selectionChange)="selectionChange($event)"
+             (entryDelete)="deleteDepartment($event)"
+  />
 </ng-container>
-
