@@ -15,6 +15,7 @@ export class DepartmentsComponent {
   private readonly departmentsFacade = inject(DepartmentsFacade);
   readonly allDepartments$ = this.departmentsFacade.allDepartments$;
   readonly selectedDepartment$ = this.departmentsFacade.selectedDepartment$;
+  readonly loading$ = this.departmentsFacade.loading$;
 
   constructor() {
     this.departmentsFacade.init();
