@@ -1,9 +1,13 @@
+<ng-container *ngrxLet="{
+  allDepartments: allDepartments$,
+  loading: loading$,
+  selectedDepartment: selectedDepartment$
+} as $">
 <h2>Departments</h2>
-<ng-container *ngrxLet="allDepartments$ as allDepartments">
-    <p-table [value]="allDepartments"
+    <p-table [value]="$.allDepartments"
              selectionMode="single"
-             [loading]="(loading$ | async)!"
-             [selection]="selectedDepartment$ | async"
+             [loading]="$.loading"
+             [selection]="$.selectedDepartment"
              (selectionChange)="selectionChange($event)"
              dataKey="id"
              [tableStyle]="{ 'min-width': '90vw' }">
