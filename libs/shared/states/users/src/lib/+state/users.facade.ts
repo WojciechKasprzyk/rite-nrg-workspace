@@ -4,6 +4,7 @@ import { select, Store, Action } from '@ngrx/store';
 import * as UsersActions from './users.actions';
 import * as UsersFeature from './users.reducer';
 import * as UsersSelectors from './users.selectors';
+import { map } from "rxjs";
 
 @Injectable()
 export class UsersFacade {
@@ -14,6 +15,7 @@ export class UsersFacade {
    * and expose them as observables through the facade.
    */
   readonly loaded$ = this.store.select(UsersSelectors.selectUsersLoaded);
+  readonly loading$ = this.loaded$.pipe(map(loaded => !loaded));
   readonly allUsers$ = this.store.select(UsersSelectors.selectAllUsers);
   readonly selectedUsers$ = this.store.select(UsersSelectors.selectEntity);
 

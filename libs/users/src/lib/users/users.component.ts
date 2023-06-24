@@ -14,6 +14,7 @@ export class UsersComponent {
   private readonly departmentsFacade = inject(DepartmentsFacade);
   private readonly selectedDepartmentUsersIds$ = this.departmentsFacade.selectedDepartmentUsersIds$;
   readonly departmentUsers$ = this.getDepartmentUsersStream();
+  readonly loading$ = this.usersFacade.loading$;
 
   constructor() {
     this.usersFacade.init();
