@@ -1,0 +1,40 @@
+<p-dialog header="Create department"
+          (visibleChange)="redirectBack()"
+          [visible]="true"
+          [modal]="true"
+          [style]="{width: '50vw', 'min-height': '50vh'}">
+  <ng-content />
+  <form [formGroup]="form" id="create-department-form">
+    <!--DEPARTMENT ID-->
+    <div class="form-control" *ngrxLet="departmentsToDropdown$ as departmentsToDropdown">
+      <label htmlFor="departmentId">Department id*</label>
+      <p-dropdown [options]="departmentsToDropdown"
+                  [filter]="true"
+                  [virtualScrollItemSize]="20"
+                  [virtualScroll]="departmentsToDropdown.length > 20"
+                  filterBy="name"
+                  optionLabel="name"
+                  optionValue="id"
+                  formControlName="departmentId" />
+    </div>
+
+    <!--NAME-->
+    <div class="form-control">
+      <label htmlFor="name">Username*</label>
+      <input pInputText
+             formControlName="name"
+             id="name" />
+    </div>
+
+    <!--Email-->
+    <div class="form-control">
+      <label htmlFor="email">Email*</label>
+      <input pInputText
+             formControlName="email"
+             id="email" />
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button (click)="handleConfirm()" label="Confirm" styleClass="p-button-text" type="submit" form="create-department-form"/>
+  </ng-template>
+</p-dialog>

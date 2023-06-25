@@ -35,6 +35,6 @@ export class DepartmentsComponent {
   }
 
   editDepartment(id: number) {
-    this.router.navigate([id], {relativeTo: this.route});
+    this.router.navigate(['department', id], {relativeTo: this.route});
   }
 }

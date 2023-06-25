@@ -1,12 +1,11 @@
 import { Injectable, inject } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import * as DepartmentsActions from './departments.actions';
 import * as DepartmentsFeature from './departments.reducer';
 import * as DepartmentsSelectors from './departments.selectors';
 import { map } from "rxjs";
 import { Department } from "@rite-nrg-workspace/shared/api";
-import { selectEntityById } from "./departments.selectors";
 
 @Injectable()
 export class DepartmentsFacade {
@@ -21,6 +20,7 @@ export class DepartmentsFacade {
   readonly allDepartments$ = this.store.select(DepartmentsSelectors.selectAllDepartments);
   readonly selectedDepartment$ = this.store.select(DepartmentsSelectors.selectEntity);
   readonly selectedDepartmentUsersIds$ = this.store.select(DepartmentsSelectors.selectDepartmentEntityUsers);
+  readonly departmentsToDropdown$ = this.store.select(DepartmentsSelectors.selectDepartmentsToDropdown);
 
   /**
    * Use the initialization action to perform one

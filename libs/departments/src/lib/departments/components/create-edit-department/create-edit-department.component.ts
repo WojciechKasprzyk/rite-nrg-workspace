@@ -28,7 +28,7 @@ export class CreateEditDepartmentComponent implements OnInit {
     this.setFormEditData();
   }
 
-  handleConfirm() {
+  handleConfirm(){
     const department: {
       name: string,
       id: number | undefined

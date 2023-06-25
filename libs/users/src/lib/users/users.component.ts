@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UsersFacade } from "@rite-nrg-workspace/shared/states/users";
 import { DepartmentsFacade } from "@rite-nrg-workspace/shared/states/departments";
 import { switchMap } from "rxjs";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'nrg-users',
@@ -10,6 +11,8 @@ import { switchMap } from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent {
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
   private readonly usersFacade = inject(UsersFacade);
   private readonly departmentsFacade = inject(DepartmentsFacade);
   private readonly selectedDepartmentUsersIds$ = this.departmentsFacade.selectedDepartmentUsersIds$;
@@ -31,5 +34,9 @@ export class UsersComponent {
       .pipe(
         switchMap((ids) => this.usersFacade.selectEntitiesByIds(ids || [])),
       );
+  }
+
+  editUser(id: number) {
+    this.router.navigate(['user', id], {relativeTo: this.route});
   }
 }

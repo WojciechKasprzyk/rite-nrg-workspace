@@ -42,3 +42,8 @@ export const selectEntitiesByIds = (ids: number[]) => createSelector(
   selectAllUsers,
   (entities) => entities.filter(entity => ids.includes(entity.id))
 );
+
+export const getUserById = (id: number) => createSelector(
+  selectUsersEntities,
+  (entities) => entities[id]
+);

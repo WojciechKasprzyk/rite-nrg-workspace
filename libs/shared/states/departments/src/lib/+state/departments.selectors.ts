@@ -52,3 +52,11 @@ export const selectEntityById = (id: number) => createSelector(
   selectDepartmentsEntities,
   (entities) => entities[id]
 );
+
+export const selectDepartmentsToDropdown = createSelector(
+  selectAllDepartments,
+  (departments) => departments.map(d => ({
+    name: `${d.name} (${d.id})`,
+    id: d.id
+  }))
+);

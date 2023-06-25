@@ -8,7 +8,7 @@ export const departmentsRoutes: Route[] = [
     pathMatch: 'full'
   },
   {
-    path: ':id',
+    path: 'department/:id',
     component: CreateEditDepartmentComponent
   }
 ];

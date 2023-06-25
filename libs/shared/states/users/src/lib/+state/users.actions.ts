@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { UsersEntity } from './users.models';
+import { UsersEntity, WriteUser } from './users.models';
 
 export const initUsers = createAction('[Users Page] Init');
 
@@ -24,6 +24,20 @@ export const deleteUserSuccess = createAction(
 
 export const deleteUserFailure = createAction(
   '[Users/API] Delete User Failure',
+  props<{ error: any }>()
+);
+
+export const createUser = createAction(
+  '[Users/API] Create User',
+  props<{user: Omit<WriteUser, 'id'> }>()
+);
+
+export const createUserSuccess = createAction(
+  '[Users/API] Create User Success'
+);
+
+export const createUserFailure = createAction(
+  '[Users/API] Create User Failure',
   props<{ error: any }>()
 );
 

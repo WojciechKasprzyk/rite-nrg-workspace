@@ -3,10 +3,13 @@
   loading: loading$,
 } as $">
 <h2>Users within department</h2>
+  <nrg-create-edit-user-button />
   <nrg-table [data]="$.departmentUsers"
              [loading]="$.loading"
              [displayedColumns]="displayedColumns"
              [fallbackMessage]="fallbackMessage"
+             (entryEdit)="editUser($event)"
              (entryDelete)="deleteUser($event)"
   />
 </ng-container>
+<router-outlet />

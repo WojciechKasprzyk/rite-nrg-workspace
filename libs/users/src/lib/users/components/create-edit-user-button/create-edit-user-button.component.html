@@ -1,0 +1,3 @@
+<p-button (click)="createUser()"
+          [disabled]="(selectedDepartment$ | async) === undefined"
+          label="Create users" />
