@@ -91,7 +91,7 @@ export class DepartmentsEffects {
     return createEffect(() =>
       this.actions$.pipe(
         ofType(DepartmentsActions.editDepartment),
-        switchMap((entry) => this.departmentsService.update(entry)),
+        switchMap(({department}) => this.departmentsService.update(department)),
         map(() => DepartmentsActions.editDepartmentSuccess()),
         catchError((error) => {
           console.error('Error', error);

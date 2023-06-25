@@ -12,6 +12,7 @@ export class UsersEffects {
   private readonly actions$ = inject(Actions);
   private readonly router = inject(Router);
   private readonly usersService = inject(UsersService);
+  private readonly departmentsFacade = inject(DepartmentsFacade);
 
   readonly init$ = this.createInitEffect();
 
@@ -66,10 +67,10 @@ export class UsersEffects {
           name: user.name,
           email: user.email,
           })
-          .pipe(map(() => user))
+          .pipe(map(({id}) => {
+            return UsersActions.createUserSuccess({user: {...user, id}})
+          }))
         ),
-        // switchMap((user) => this.usersService.)
-        map(() => UsersActions.createUserSuccess()),
         catchError((error) => {
           console.error('Error', error);
           return of(UsersActions.loadUsersFailure({ error }));
@@ -82,7 +83,7 @@ export class UsersEffects {
     return createEffect(() =>
       this.actions$.pipe(
         ofType(UsersActions.createUserSuccess),
-        // map((user) => DepartmentsFacade)
+        map(({user}) => this.departmentsFacade.addUserToDepartment(user.departmentId, user.id)),
         tap(() => this.router.navigateByUrl('')),
         map(() => UsersActions.initUsers())
       ),

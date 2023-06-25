@@ -1,8 +1,9 @@
 import { inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { Entry } from "@rite-nrg-workspace/shared/api";
 
-export abstract class HttpService<T> {
+export abstract class HttpService<T extends Entry> {
   protected readonly url!: string;
   private readonly http = inject(HttpClient);
 
@@ -10,15 +11,18 @@ export abstract class HttpService<T> {
     return this.http.get<T[]>(this.url);
   }
 
-  delete(id: number){
-    return this.http.delete(`${this.url}/${id}`);
+  delete(id: number): Observable<T>{
+    return this.http.delete(`${this.url}/${id}`) as Observable<T>;
   }
 
-  create(entry: Partial<T>) {
-    return this.http.post(this.url, entry);
+  create(entry: Partial<T>): Observable<T> {
+    return this.http.post(this.url, entry) as Observable<T>;
   }
 
-  update(entry: Partial<T> & {id: number}) {
-    return this.http.put(`${this.url}/${entry.id}`, entry);
+  //It's necessary to pass whole entry of type T
+  update(entry: T): Observable<T> {
+    //PATCH method is not implemented
+    //Need to use PUT instead
+    return this.http.put(`${this.url}/${entry.id}`, entry) as Observable<T>;
   }
 }

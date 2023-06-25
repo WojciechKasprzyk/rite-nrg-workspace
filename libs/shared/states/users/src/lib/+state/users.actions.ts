@@ -33,7 +33,8 @@ export const createUser = createAction(
 );
 
 export const createUserSuccess = createAction(
-  '[Users/API] Create User Success'
+  '[Users/API] Create User Success',
+  props<{user: WriteUser }>()
 );
 
 export const createUserFailure = createAction(

@@ -49,7 +49,7 @@ export const createDepartmentFailure = createAction(
 
 export const editDepartment = createAction(
   '[Departments/API] Edit Department',
-  props<{ name: string, id: number }>()
+  props<{ department: DepartmentsEntity }>()
 );
 
 export const editDepartmentSuccess = createAction(
