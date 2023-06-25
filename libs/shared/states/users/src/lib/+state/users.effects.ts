@@ -22,6 +22,9 @@ export class UsersEffects {
   readonly create$ = this.createCreateEffect();
   readonly createSuccess$ = this.createCreateSuccessEffect();
 
+  readonly edit$ = this.createEditEffect();
+  readonly editSuccess$ = this.createEditSuccessEffect();
+
   private createInitEffect() {
     return createEffect(() =>
       this.actions$.pipe(
@@ -83,10 +86,46 @@ export class UsersEffects {
     return createEffect(() =>
       this.actions$.pipe(
         ofType(UsersActions.createUserSuccess),
-        map(({user}) => this.departmentsFacade.addUserToDepartment(user.departmentId, user.id)),
+        tap(({user}) => this.departmentsFacade.addUserToDepartment(user.departmentId, user.id)),
         tap(() => this.router.navigateByUrl('')),
         map(() => UsersActions.initUsers())
       ),
     );
   }
+
+  private createEditEffect() {
+    return createEffect(() =>
+      this.actions$.pipe(
+        ofType(UsersActions.editUser),
+        switchMap(({user}) => this.usersService.update({
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          })
+          .pipe(map(() => {
+            return UsersActions.editUserSuccess({user})
+          }))
+        ),
+        catchError((error) => {
+          console.error('Error', error);
+          return of(UsersActions.loadUsersFailure({ error }));
+        })
+      )
+    );
+  }
+
+  private createEditSuccessEffect() {
+    return createEffect(() =>
+      this.actions$.pipe(
+        ofType(UsersActions.editUserSuccess),
+        tap(({user}) => {
+          this.departmentsFacade.removeUserToDepartment(user.departmentId, user.id)
+          this.departmentsFacade.addUserToDepartment(user.departmentId, user.id)
+        }),
+        tap(() => this.router.navigateByUrl('')),
+        map(() => UsersActions.initUsers())
+      ),
+    );
+  }
+
 }

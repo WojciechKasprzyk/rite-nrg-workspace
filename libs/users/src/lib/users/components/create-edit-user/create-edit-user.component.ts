@@ -52,7 +52,7 @@ export class CreateEditUserComponent implements OnInit {
   }
 
   private editDepartment(user: WriteUser) {
-    // this.usersFacade.editUser(user);
+    this.usersFacade.editUser(user);
   }
 
   private createDepartment(user: Omit<WriteUser, 'id'>) {

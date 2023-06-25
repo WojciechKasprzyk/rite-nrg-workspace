@@ -4,8 +4,9 @@ import { select, Store, Action } from '@ngrx/store';
 import * as UsersActions from './users.actions';
 import * as UsersFeature from './users.reducer';
 import * as UsersSelectors from './users.selectors';
-import { map } from "rxjs";
+import { first, map } from "rxjs";
 import { WriteUser } from "./users.models";
+import { User } from "@rite-nrg-workspace/shared/api";
 
 @Injectable()
 export class UsersFacade {
@@ -40,9 +41,17 @@ export class UsersFacade {
     this.store.dispatch(UsersActions.createUser({user}))
   }
 
-  // editDepartment(department: Omit<Department, 'users'>) {
-  //   this.store.dispatch(DepartmentsActions.editDepartment(department));
-  // }
+  editUser(user: WriteUser) {
+    this.getUserById(user.id)
+      .pipe(first())
+      .subscribe(u => {
+        const mergedUser = {
+          ...u,
+          ...user
+        } as WriteUser;
+        this.store.dispatch(UsersActions.editUser({user: mergedUser}));
+      })
+  }
 
   getUserById(id: number) {
     return this.store.select(UsersSelectors.getUserById(id))
