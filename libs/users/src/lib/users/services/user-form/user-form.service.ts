@@ -17,6 +17,20 @@ export class UserFormService {
     departmentId: [NaN, Validators.required]
   })
 
+  get formRawData(): {
+    name: string,
+    email: string,
+    departmentId: number,
+    id: number | undefined
+  } {
+    return {
+      name: this.form.get('name')?.value ?? '',
+      email: this.form.get('email')?.value ?? '',
+      departmentId: this.form.get('departmentId')?.value || NaN,
+      id: undefined,
+    };
+  }
+
   constructor() {
     this.departmentsFacade.selectedDepartment$
       .pipe(
@@ -27,6 +41,10 @@ export class UserFormService {
         this.form.controls.departmentId.setValue(id);
         this.form.controls.departmentId.disable();
       })
+  }
+
+  enabledDepartmentId() {
+    this.form.controls.departmentId.enable();
   }
 
   private redirectWhenNoDepartmentSelected(department: Department | undefined) {

@@ -25,18 +25,7 @@ export class CreateEditUserComponent implements OnInit {
   }
 
   handleConfirm(){
-    const user: {
-      name: string,
-      email: string,
-      departmentId: number,
-      id: number | undefined
-    } = {
-      name: this.form.get('name')?.value ?? '',
-      email: this.form.get('email')?.value ?? '',
-      departmentId: this.form.get('departmentId')?.value || NaN,
-      id: undefined,
-    };
-
+    const user = this.userFormService.formRawData;
     if (this.id != null) {
       user.id = +this.id
       this.editDepartment(user as WriteUser)
@@ -51,6 +40,7 @@ export class CreateEditUserComponent implements OnInit {
 
   private setFormEditData() {
     if (this.id != null) {
+      this.userFormService.enabledDepartmentId();
       this.usersFacade.getUserById(+this.id)
         .pipe(
           filter(user => !!user),
