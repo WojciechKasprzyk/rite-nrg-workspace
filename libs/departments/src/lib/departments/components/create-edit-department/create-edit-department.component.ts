@@ -20,7 +20,8 @@ import { Department } from "@rite-nrg-workspace/shared/api";
 })
 export class CreateEditDepartmentComponent implements OnInit {
   @Input() id?: string | undefined;
-  protected readonly form = inject(DepartmentFormService).form;
+  protected readonly departmentFormService = inject(DepartmentFormService);
+  protected readonly form = this.departmentFormService.form;
   protected readonly departmentsFacade = inject(DepartmentsFacade);
   protected readonly router = inject(Router);
 
@@ -29,13 +30,7 @@ export class CreateEditDepartmentComponent implements OnInit {
   }
 
   handleConfirm(){
-    const department: {
-      name: string,
-      id: number | undefined
-    } = {
-      name: this.form.get('name')?.value ?? '',
-      id: undefined
-    };
+    const department = this.departmentFormService.formRawData;
 
     if (this.id != null) {
       department.id = +this.id

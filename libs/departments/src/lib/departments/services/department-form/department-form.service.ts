@@ -7,4 +7,14 @@ export class DepartmentFormService {
   readonly form = this.fb.group({
     name: ['', Validators.required],
   })
+
+  get formRawData(): {
+    name: string,
+    id: number | undefined
+  } {
+    return {
+      name: this.form.get('name')?.value ?? '',
+      id: undefined
+    };
+  }
 }
