@@ -65,7 +65,6 @@ export class TableComponent<T extends Entry> implements OnInit {
   }
 
   protected onPageChange(e: PaginatorState) {
-    console.log(e)
     this.paginatorState.set(e);
   }
 
