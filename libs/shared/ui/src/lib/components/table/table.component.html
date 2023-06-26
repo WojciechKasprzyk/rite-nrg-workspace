@@ -1,4 +1,4 @@
-<p-table [value]="data"
+<p-table [value]="data | nrgPaginator:paginatorState()"
          selectionMode="single"
          [loading]="loading"
          [selection]="selection"
@@ -37,3 +37,8 @@
     </tr>
   </ng-template>
 </p-table>
+<!--             [first]="0"-->
+<!--             [rows]="5"-->
+<p-paginator (onPageChange)="onPageChange($event)"
+             [totalRecords]="data.length"
+             [rowsPerPageOptions]="[5, 10, 15]" />
