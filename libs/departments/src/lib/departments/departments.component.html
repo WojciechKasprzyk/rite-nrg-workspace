@@ -4,7 +4,10 @@
   selectedDepartment: selectedDepartment$
 } as $">
   <h2>Departments</h2>
-  <nrg-create-edit-department-button />
+  <div class="action-bar">
+    <nrg-search (search)="onSearch($event)"/>
+    <nrg-create-edit-department-button />
+  </div>
   <nrg-table [data]="$.allDepartments"
              [loading]="$.loading"
              [selection]="$.selectedDepartment"

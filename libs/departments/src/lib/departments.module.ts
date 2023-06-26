@@ -5,7 +5,7 @@ import { SharedStatesDepartmentsModule } from '@rite-nrg-workspace/shared/states
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LetDirective } from '@ngrx/component';
-import { TableComponent } from '@rite-nrg-workspace/shared/ui';
+import { SearchComponent, TableComponent } from '@rite-nrg-workspace/shared/ui';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -27,6 +27,7 @@ const PRIME_NG_COMPONENTS = [InputTextModule, ButtonModule, DialogModule];
     TableComponent,
     ReactiveFormsModule,
     RouterModule.forChild(departmentsRoutes),
+    SearchComponent,
   ],
   declarations: [
     DepartmentsComponent,
