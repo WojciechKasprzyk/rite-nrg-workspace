@@ -23,6 +23,7 @@ export class CreateEditDepartmentComponent implements OnInit {
   protected readonly departmentFormService = inject(DepartmentFormService);
   protected readonly form = this.departmentFormService.form;
   protected readonly departmentsFacade = inject(DepartmentsFacade);
+  protected readonly loading$ = this.departmentsFacade.loading$;
   protected readonly router = inject(Router);
 
   ngOnInit() {

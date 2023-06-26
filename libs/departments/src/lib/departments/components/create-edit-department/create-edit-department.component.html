@@ -15,7 +15,7 @@
   </form>
     <ng-template pTemplate="footer">
       <p-button (click)="handleConfirm()"
-                [disabled]="!form.controls.name.value || !form.valid"
+                [disabled]="!form.controls.name.value || !form.valid || (loading$ | async)!"
                 label="Confirm"
                 styleClass="p-button-text"
                 type="submit"/>

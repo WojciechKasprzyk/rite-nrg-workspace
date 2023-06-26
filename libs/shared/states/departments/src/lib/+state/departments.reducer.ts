@@ -32,10 +32,10 @@ const reducer = createReducer(
     loaded: false,
     error: null,
   })),
-  on(DepartmentsActions.loadDepartmentsSuccess, (state, { departments }) =>
-    departmentsAdapter.setAll(departments, { ...state, loaded: true })
+  on(DepartmentsActions.loadDepartmentsSuccess, (state, {departments}) =>
+    departmentsAdapter.setAll(departments, {...state, loaded: true})
   ),
-  on(DepartmentsActions.loadDepartmentsFailure, (state, { error }) => ({
+  on(DepartmentsActions.loadDepartmentsFailure, (state, {error}) => ({
     ...state,
     error,
   })),
@@ -43,7 +43,22 @@ const reducer = createReducer(
   on(DepartmentsActions.selectDepartment, (state, {id}) => ({
     ...state,
     selectedId: id
-  }))
+  })),
+
+  on(DepartmentsActions.editDepartment, (state) => ({
+    ...state,
+    loaded: false
+  })),
+
+  on(DepartmentsActions.deleteDepartment, (state) => ({
+    ...state,
+    loaded: false
+  })),
+
+  on(DepartmentsActions.createDepartment, (state) => ({
+    ...state,
+    loaded: false
+  })),
 );
 
 export function departmentsReducer(
