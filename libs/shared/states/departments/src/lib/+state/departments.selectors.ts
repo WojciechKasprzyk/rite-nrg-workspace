@@ -60,8 +60,3 @@ export const selectDepartmentsToDropdown = createSelector(
     id: d.id
   }))
 );
-
-export const selectDepartmentByUserId = (userId: number) => createSelector(
-  selectAllDepartments,
-  (departments) => departments.find(d => d.users.includes(userId))
-);

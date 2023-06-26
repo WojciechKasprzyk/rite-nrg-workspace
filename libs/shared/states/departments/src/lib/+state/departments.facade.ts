@@ -43,16 +43,7 @@ export class DepartmentsFacade {
   }
 
   editDepartment(department: Partial<Department> & Entry) {
-    //It's necessary to pass whole object while updating
-    this.getDepartmentById(department.id)
-      .pipe(first())
-      .subscribe(d => {
-        const mergedDepartment = {
-          ...d,
-          ...department,
-        } as Department;
-        this.store.dispatch(DepartmentsActions.editDepartment({department: mergedDepartment}));
-      })
+    this.store.dispatch(DepartmentsActions.editDepartment({department}));
   }
 
   addUserToDepartment(departmentId: number, userId: number) {
@@ -68,24 +59,7 @@ export class DepartmentsFacade {
     })
   }
 
-  removeUserToDepartment(userId: number) {
-    this.getDepartmentByUserId(userId)
-      .pipe(
-        first(),
-        map((d) => d as Department)
-      ).subscribe(({id, users}) => {
-      this.editDepartment({
-        id,
-        users: users.filter(id => id != userId)
-      })
-    })
-  }
-
   getDepartmentById(id: number) {
     return this.store.select(DepartmentsSelectors.selectEntityById(id));
-  }
-
-  getDepartmentByUserId(id: number) {
-    return this.store.select(DepartmentsSelectors.selectDepartmentByUserId(id));
   }
 }

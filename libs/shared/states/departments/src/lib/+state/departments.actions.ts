@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { DepartmentsEntity } from './departments.models';
+import { Entry } from "@rite-nrg-workspace/shared/api";
 
 export const initDepartments = createAction('[Departments Page] Init');
 
@@ -49,7 +50,7 @@ export const createDepartmentFailure = createAction(
 
 export const editDepartment = createAction(
   '[Departments/API] Edit Department',
-  props<{ department: DepartmentsEntity }>()
+  props<{ department: Partial<DepartmentsEntity> & Entry }>()
 );
 
 export const editDepartmentSuccess = createAction(

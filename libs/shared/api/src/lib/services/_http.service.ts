@@ -1,6 +1,6 @@
 import { inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, tap } from "rxjs";
+import { Observable } from "rxjs";
 import { Entry } from "@rite-nrg-workspace/shared/api";
 
 export abstract class HttpService<T extends Entry> {
