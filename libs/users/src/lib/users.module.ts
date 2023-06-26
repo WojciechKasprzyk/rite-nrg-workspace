@@ -8,7 +8,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { LetDirective } from '@ngrx/component';
-import { TableComponent } from '@rite-nrg-workspace/shared/ui';
+import { SearchComponent, TableComponent } from '@rite-nrg-workspace/shared/ui';
 import { CreateEditUserButtonComponent, CreateEditUserComponent } from "./users/components";
 import { RouterModule } from "@angular/router";
 import { usersRoutes } from "./users.routes";
@@ -35,6 +35,7 @@ const PRIME_NG_COMPONENTS = [
     TableComponent,
     RouterModule.forChild(usersRoutes),
     ReactiveFormsModule,
+    SearchComponent,
   ],
   declarations: [
     UsersComponent,

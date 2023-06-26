@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, EventEmitter, Output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, EventEmitter, Input, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
@@ -12,6 +12,7 @@ import { InputTextModule } from "primeng/inputtext";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent {
+  @Input() disabled = false;
   @Output() search = new EventEmitter<string>();
   readonly model = signal('');
 

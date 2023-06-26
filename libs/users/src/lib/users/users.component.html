@@ -1,9 +1,14 @@
 <ng-container *ngrxLet="{
   departmentUsers: departmentUsers$,
+  selectedDepartment: selectedDepartment$,
   loading: loading$,
 } as $">
 <h2>Users within department</h2>
-  <nrg-create-edit-user-button />
+  <div class="action-bar">
+    <nrg-search [disabled]="!($.selectedDepartment)"
+                (search)="onSearch($event)"/>
+    <nrg-create-edit-user-button />
+  </div>
   <nrg-table [data]="$.departmentUsers"
              [loading]="$.loading"
              [displayedColumns]="displayedColumns"
