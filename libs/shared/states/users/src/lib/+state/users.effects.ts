@@ -119,7 +119,7 @@ export class UsersEffects {
       this.actions$.pipe(
         ofType(UsersActions.editUserSuccess),
         tap(({user}) => {
-          this.departmentsFacade.removeUserToDepartment(user.departmentId, user.id)
+          this.departmentsFacade.removeUserToDepartment(user.id)
           this.departmentsFacade.addUserToDepartment(user.departmentId, user.id)
         }),
         tap(() => this.router.navigateByUrl('')),

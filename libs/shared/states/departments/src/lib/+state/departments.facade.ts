@@ -68,14 +68,14 @@ export class DepartmentsFacade {
     })
   }
 
-  removeUserToDepartment(departmentId: number, userId: number) {
+  removeUserToDepartment(userId: number) {
     this.getDepartmentByUserId(userId)
       .pipe(
         first(),
-        map((d) => (d as Department).users)
-      ).subscribe(users => {
+        map((d) => d as Department)
+      ).subscribe(({id, users}) => {
       this.editDepartment({
-        id: departmentId,
+        id,
         users: users.filter(id => id != userId)
       })
     })
