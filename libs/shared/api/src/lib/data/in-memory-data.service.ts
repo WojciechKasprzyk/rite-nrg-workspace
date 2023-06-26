@@ -61,6 +61,11 @@ export class InMemoryDataService<T extends Partial<CollectionsTypes> & Entry> im
 
     const patchedValue = this.patchValue(body, collectionName);
 
+    if (collectionName === 'users') {
+      const departmentId = this.getDepartmentId(reqInfo);
+      this.swapUserDepartment(body, +departmentId);
+    }
+
     return reqInfo.utils.createResponse$(() => {
 
       const options = {
@@ -86,5 +91,34 @@ export class InMemoryDataService<T extends Partial<CollectionsTypes> & Entry> im
       ...collection[index],
       ...entry
     }
+  }
+
+  private swapUserDepartment(user: T, departmentId: number) {
+    const {id: userId} = user;
+    const departments = DB.departments;
+    const currentDepartmentIndex = departments.findIndex(d => d.users.includes(userId));
+    const currentDepartment = departments[currentDepartmentIndex];
+
+    if (departmentId === currentDepartment.id) {
+      return;
+    }
+
+    const newDepartmentIndex = departments.findIndex(d => d.id === departmentId);
+    const newDepartment = departments[newDepartmentIndex];
+
+    departments[currentDepartmentIndex] = {
+      ...currentDepartment,
+      users: currentDepartment.users.filter(id => id !== userId)
+    }
+
+    departments[newDepartmentIndex] = {
+      ...newDepartment,
+      users: [...newDepartment.users, userId]
+    }
+
+  }
+
+  private getDepartmentId(reqInfo: RequestInfo): string {
+    return (reqInfo.query.get('departmentId') as string[])[0]
   }
 }

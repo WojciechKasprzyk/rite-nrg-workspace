@@ -48,8 +48,7 @@ export const editUser = createAction(
 );
 
 export const editUserSuccess = createAction(
-  '[Users/API] Edit User Success',
-  props<{user: WriteUser }>()
+  '[Users/API] Edit User Success'
 );
 
 export const editUserFailure = createAction(

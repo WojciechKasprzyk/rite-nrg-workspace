@@ -101,11 +101,9 @@ export class UsersEffects {
           id: user.id,
           name: user.name,
           email: user.email,
-          })
-          .pipe(map(() => {
-            return UsersActions.editUserSuccess({user})
-          }))
+          }, `departmentId=${user.departmentId}`)
         ),
+        map(() => UsersActions.editUserSuccess()),
         catchError((error) => {
           console.error('Error', error);
           return of(UsersActions.loadUsersFailure({ error }));
@@ -118,10 +116,7 @@ export class UsersEffects {
     return createEffect(() =>
       this.actions$.pipe(
         ofType(UsersActions.editUserSuccess),
-        tap(({user}) => {
-          this.departmentsFacade.removeUserToDepartment(user.id)
-          this.departmentsFacade.addUserToDepartment(user.departmentId, user.id)
-        }),
+        tap(() => this.departmentsFacade.init()),
         tap(() => this.router.navigateByUrl('')),
         map(() => UsersActions.initUsers())
       ),

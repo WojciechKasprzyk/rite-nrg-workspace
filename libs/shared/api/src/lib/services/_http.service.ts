@@ -19,7 +19,12 @@ export abstract class HttpService<T extends Entry> {
     return this.http.post(this.url, entry) as Observable<T>;
   }
 
-  update(entry: T): Observable<T> {
-    return this.http.patch(`${this.url}/${entry.id}`, entry) as Observable<T>;
+  update(entry: Partial<T>, params?: string): Observable<T> {
+    let url = `${this.url}/${entry.id}`;
+
+    if (params) {
+      url += `?${params}`;
+    }
+    return this.http.patch(url, entry) as Observable<T>;
   }
 }
