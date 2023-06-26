@@ -16,6 +16,7 @@ export class CreateEditUserComponent implements OnInit {
   @Input() id?: string | undefined;
   private readonly userFormService = inject(UserFormService);
   protected readonly usersFacade = inject(UsersFacade);
+  protected readonly loading$ = this.usersFacade.loading$;
   protected readonly router = inject(Router);
   protected readonly form = this.userFormService.form;
   protected readonly departmentsToDropdown$ = this.userFormService.departmentsToDropdown$;
