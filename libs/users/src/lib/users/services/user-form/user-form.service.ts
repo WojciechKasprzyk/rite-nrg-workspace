@@ -39,12 +39,7 @@ export class UserFormService {
         map((department: Department) => department.id)
       ).subscribe(id => {
         this.form.controls.departmentId.setValue(id);
-        this.form.controls.departmentId.disable();
       })
-  }
-
-  enabledDepartmentId() {
-    this.form.controls.departmentId.enable();
   }
 
   private redirectWhenNoDepartmentSelected(department: Department | undefined) {

@@ -3,7 +3,7 @@
           [visible]="true"
           [modal]="true"
           [style]="{width: '50vw', 'min-height': '50vh'}">
-  <ng-content />
+  <ng-content/>
   <form [formGroup]="form">
     <!--DEPARTMENT ID-->
     <div class="form-control" *ngrxLet="departmentsToDropdown$ as departmentsToDropdown">
@@ -12,10 +12,11 @@
                   [filter]="true"
                   [virtualScrollItemSize]="20"
                   [virtualScroll]="departmentsToDropdown.length > 20"
+                  [readonly]="!id"
                   filterBy="name"
                   optionLabel="name"
                   optionValue="id"
-                  formControlName="departmentId" />
+                  formControlName="departmentId"/>
     </div>
 
     <!--NAME-->
@@ -23,7 +24,7 @@
       <label htmlFor="name">Username*</label>
       <input pInputText
              formControlName="name"
-             id="name" />
+             id="name"/>
     </div>
 
     <!--Email-->
@@ -32,7 +33,7 @@
       <input pInputText
              type="email"
              formControlName="email"
-             id="email" />
+             id="email"/>
     </div>
   </form>
   <ng-template pTemplate="footer">
@@ -40,6 +41,6 @@
               [disabled]="!form.controls.name.value || !form.controls.email.value || !form.valid || (loading$ | async)!"
               label="Confirm"
               styleClass="p-button-text"
-              type="submit" />
+              type="submit"/>
   </ng-template>
 </p-dialog>

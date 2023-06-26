@@ -41,7 +41,6 @@ export class CreateEditUserComponent implements OnInit {
 
   private setFormEditData() {
     if (this.id != null) {
-      this.userFormService.enabledDepartmentId();
       this.usersFacade.getUserById(+this.id)
         .pipe(
           filter(user => !!user),
