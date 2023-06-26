@@ -42,15 +42,7 @@ export class UsersFacade {
   }
 
   editUser(user: WriteUser) {
-    this.getUserById(user.id)
-      .pipe(first())
-      .subscribe(u => {
-        const mergedUser = {
-          ...u,
-          ...user
-        } as WriteUser;
-        this.store.dispatch(UsersActions.editUser({user: mergedUser}));
-      })
+    this.store.dispatch(UsersActions.editUser({user}));
   }
 
   getUserById(id: number) {
