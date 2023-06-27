@@ -2,28 +2,28 @@ import { Injectable } from "@angular/core";
 import { TestBed } from '@angular/core/testing';
 import { MockProvider } from "ng-mocks";
 import { HttpClient } from "@angular/common/http";
-import { DepartmentsService } from "./departments.service";
+import { UsersService } from "./users.service";
 import spyOn = jest.spyOn;
 
 @Injectable()
-class TestingDepartmentsService extends DepartmentsService {
+class TestingUserService extends UsersService {
   getUrl(): string {
     return this.url;
   }
 }
 
 describe('HttpService', () => {
-  let service: TestingDepartmentsService;
+  let service: TestingUserService;
   let http: HttpClient;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        TestingDepartmentsService,
+        TestingUserService,
         MockProvider(HttpClient)
       ]
     });
-    service = TestBed.inject(TestingDepartmentsService);
+    service = TestBed.inject(TestingUserService);
     http = TestBed.inject(HttpClient);
   });
 
@@ -52,7 +52,7 @@ describe('HttpService', () => {
     const url = service.getUrl();
     const body = {
       id: 2,
-      name: 'R&D'
+      name: 'John Doe'
     }
     service.create(body);
 
@@ -63,10 +63,11 @@ describe('HttpService', () => {
     const spy = spyOn(http, 'patch');
     const body = {
       id: 2,
-      name: 'R&D'
+      name: 'John Doe'
     }
-    const url = `${service.getUrl()}/${body.id}`
-    service.update(body);
+    const params = 'departmentId=1'
+    const url = `${service.getUrl()}/${body.id}?${params}`
+    service.update(body, params);
 
     expect(spy).toHaveBeenCalledWith(url, body);
   })
