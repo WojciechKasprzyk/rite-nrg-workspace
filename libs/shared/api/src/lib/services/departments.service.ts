@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Department } from "../models";
-import { HttpService } from "./_http.service";
+import { HttpService } from "./_http/_http.service";
 
 @Injectable()
 export class DepartmentsService extends HttpService<Department>{

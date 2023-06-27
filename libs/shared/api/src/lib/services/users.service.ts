@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { User } from "../models";
-import { HttpService } from "./_http.service";
+import { HttpService } from "./_http/_http.service";
 
 @Injectable()
 export class UsersService extends HttpService<User>{
