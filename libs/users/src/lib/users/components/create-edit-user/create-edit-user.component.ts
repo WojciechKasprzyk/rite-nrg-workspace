@@ -26,6 +26,10 @@ export class CreateEditUserComponent implements OnInit {
   }
 
   handleConfirm(){
+    if (this.form.invalid) {
+      return;
+    }
+
     const user = this.userFormService.formRawData;
     if (this.id != null) {
       user.id = +this.id

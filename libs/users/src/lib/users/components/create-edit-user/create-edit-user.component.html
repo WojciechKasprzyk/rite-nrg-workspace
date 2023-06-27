@@ -4,7 +4,8 @@
           [modal]="true"
           [style]="{width: '50vw', 'min-height': '50vh'}">
   <ng-content/>
-  <form [formGroup]="form">
+  <form [formGroup]="form"
+        (ngSubmit)="handleConfirm()">
     <!--DEPARTMENT ID-->
     <div class="form-control" *ngrxLet="departmentsToDropdown$ as departmentsToDropdown">
       <label htmlFor="departmentId">Department id*</label>
@@ -38,7 +39,7 @@
   </form>
   <ng-template pTemplate="footer">
     <p-button (click)="handleConfirm()"
-              [disabled]="!form.controls.name.value || !form.controls.email.value || !form.valid || (loading$ | async)!"
+              [disabled]="!form.valid || (loading$ | async)!"
               label="Confirm"
               styleClass="p-button-text"
               type="submit"/>
