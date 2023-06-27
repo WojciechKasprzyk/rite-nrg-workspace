@@ -31,6 +31,10 @@ export class CreateEditDepartmentComponent implements OnInit {
   }
 
   handleConfirm(){
+    if (this.form.invalid) {
+      return;
+    }
+
     const department = this.departmentFormService.formRawData;
 
     if (this.id != null) {
