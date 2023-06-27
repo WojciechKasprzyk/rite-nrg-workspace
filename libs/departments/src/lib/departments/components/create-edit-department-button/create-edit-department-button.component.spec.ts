@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreateEditDepartmentButtonComponent } from './create-edit-department-button.component';
+import { RouterTestingModule } from "@angular/router/testing";
+import { MockModule } from "ng-mocks";
+import { ButtonModule } from "primeng/button";
 
 describe('CreateDepartmentButtonComponent', () => {
   let component: CreateEditDepartmentButtonComponent;
@@ -7,6 +10,10 @@ describe('CreateDepartmentButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        MockModule(ButtonModule)
+      ],
       declarations: [CreateEditDepartmentButtonComponent],
     }).compileComponents();
 
