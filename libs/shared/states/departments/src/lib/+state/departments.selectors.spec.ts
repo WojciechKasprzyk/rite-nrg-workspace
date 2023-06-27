@@ -9,10 +9,11 @@ import * as DepartmentsSelectors from './departments.selectors';
 describe('Departments Selectors', () => {
   const ERROR_MSG = 'No Error Available';
   const getDepartmentsId = (it: DepartmentsEntity) => it.id;
-  const createDepartmentsEntity = (id: string, name = '') =>
+  const createDepartmentsEntity = (id: number, name = '', users = []) =>
     ({
       id,
       name: name || `name-${id}`,
+      users
     } as DepartmentsEntity);
 
   let state: DepartmentsPartialState;
@@ -21,13 +22,13 @@ describe('Departments Selectors', () => {
     state = {
       departments: departmentsAdapter.setAll(
         [
-          createDepartmentsEntity('PRODUCT-AAA'),
-          createDepartmentsEntity('PRODUCT-BBB'),
-          createDepartmentsEntity('PRODUCT-CCC'),
+          createDepartmentsEntity(1, 'PRODUCT-AAA'),
+          createDepartmentsEntity(2, 'PRODUCT-BBB'),
+          createDepartmentsEntity(3, 'PRODUCT-CCC'),
         ],
         {
           ...initialDepartmentsState,
-          selectedId: 'PRODUCT-BBB',
+          selectedId: 2,
           error: ERROR_MSG,
           loaded: true,
         }
@@ -41,7 +42,7 @@ describe('Departments Selectors', () => {
       const selId = getDepartmentsId(results[1]);
 
       expect(results.length).toBe(3);
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe(2);
     });
 
     it('selectEntity() should return the selected Entity', () => {
@@ -50,7 +51,7 @@ describe('Departments Selectors', () => {
       ) as DepartmentsEntity;
       const selId = getDepartmentsId(result);
 
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe(2);
     });
 
     it('selectDepartmentsLoaded() should return the current "loaded" status', () => {

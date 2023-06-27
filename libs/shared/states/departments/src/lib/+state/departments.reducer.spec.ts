@@ -10,18 +10,20 @@ import {
 
 describe('Departments Reducer', () => {
   const createDepartmentsEntity = (
-    id: string,
-    name = ''
+    id: number,
+    name = '',
+    users = []
   ): DepartmentsEntity => ({
     id,
     name: name || `name-${id}`,
+    users
   });
 
   describe('valid Departments actions', () => {
     it('loadDepartmentsSuccess should return the list of known Departments', () => {
       const departments = [
-        createDepartmentsEntity('PRODUCT-AAA'),
-        createDepartmentsEntity('PRODUCT-zzz'),
+        createDepartmentsEntity(1, 'PRODUCT-AAA'),
+        createDepartmentsEntity(2, 'PRODUCT-zzz'),
       ];
       const action = DepartmentsActions.loadDepartmentsSuccess({ departments });
 

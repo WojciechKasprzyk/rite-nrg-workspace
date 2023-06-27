@@ -15,6 +15,9 @@ import {
   departmentsReducer,
 } from './departments.reducer';
 import * as DepartmentsSelectors from './departments.selectors';
+import { MockProvider } from "ng-mocks";
+import { DepartmentsService } from "@rite-nrg-workspace/shared/api";
+import { of } from "rxjs";
 
 interface TestSchema {
   departments: DepartmentsState;
@@ -24,11 +27,13 @@ describe('DepartmentsFacade', () => {
   let facade: DepartmentsFacade;
   let store: Store<TestSchema>;
   const createDepartmentsEntity = (
-    id: string,
-    name = ''
+    id = 1,
+    name = '',
+    users= [1,2,3]
   ): DepartmentsEntity => ({
     id,
     name: name || `name-${id}`,
+    users
   });
 
   describe('used in NgModule', () => {
@@ -38,7 +43,12 @@ describe('DepartmentsFacade', () => {
           StoreModule.forFeature(DEPARTMENTS_FEATURE_KEY, departmentsReducer),
           EffectsModule.forFeature([DepartmentsEffects]),
         ],
-        providers: [DepartmentsFacade],
+        providers: [
+          DepartmentsFacade,
+          MockProvider(DepartmentsService, {
+            fetchAll: () => of([])
+          }),
+        ],
       })
       class CustomFeatureModule {}
 
@@ -73,6 +83,7 @@ describe('DepartmentsFacade', () => {
 
       expect(list.length).toBe(0);
       expect(isLoaded).toBe(true);
+
     });
 
     /**
@@ -88,8 +99,8 @@ describe('DepartmentsFacade', () => {
       store.dispatch(
         DepartmentsActions.loadDepartmentsSuccess({
           departments: [
-            createDepartmentsEntity('AAA'),
-            createDepartmentsEntity('BBB'),
+            createDepartmentsEntity(1, 'AAA', [1,2]),
+            createDepartmentsEntity(2, 'BBB', [3,4]),
           ],
         })
       );

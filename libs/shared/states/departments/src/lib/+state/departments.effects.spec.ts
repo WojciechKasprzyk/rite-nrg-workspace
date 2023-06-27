@@ -3,10 +3,12 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { hot } from 'jasmine-marbles';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import * as DepartmentsActions from './departments.actions';
 import { DepartmentsEffects } from './departments.effects';
+import { MockProvider } from "ng-mocks";
+import { DepartmentsService } from "@rite-nrg-workspace/shared/api";
 
 describe('DepartmentsEffects', () => {
   let actions: Observable<Action>;
@@ -19,6 +21,9 @@ describe('DepartmentsEffects', () => {
         DepartmentsEffects,
         provideMockActions(() => actions),
         provideMockStore(),
+        MockProvider(DepartmentsService, {
+          fetchAll: () => of([])
+        })
       ],
     });
 
