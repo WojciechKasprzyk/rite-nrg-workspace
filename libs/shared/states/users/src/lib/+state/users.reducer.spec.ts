@@ -5,16 +5,17 @@ import { UsersEntity } from './users.models';
 import { UsersState, initialUsersState, usersReducer } from './users.reducer';
 
 describe('Users Reducer', () => {
-  const createUsersEntity = (id: string, name = ''): UsersEntity => ({
+  const createUsersEntity = (id: number, name = '', email = ''): UsersEntity => ({
     id,
     name: name || `name-${id}`,
+    email
   });
 
   describe('valid Users actions', () => {
     it('loadUsersSuccess should return the list of known Users', () => {
       const users = [
-        createUsersEntity('PRODUCT-AAA'),
-        createUsersEntity('PRODUCT-zzz'),
+        createUsersEntity(1, 'PRODUCT-AAA'),
+        createUsersEntity(2, 'PRODUCT-zzz'),
       ];
       const action = UsersActions.loadUsersSuccess({ users });
 

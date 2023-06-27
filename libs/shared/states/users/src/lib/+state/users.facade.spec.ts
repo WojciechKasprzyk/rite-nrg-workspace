@@ -15,6 +15,10 @@ import {
   usersReducer,
 } from './users.reducer';
 import * as UsersSelectors from './users.selectors';
+import { MockProvider } from "ng-mocks";
+import { UsersService } from "@rite-nrg-workspace/shared/api";
+import { DepartmentsFacade } from "@rite-nrg-workspace/shared/states/departments";
+import { of } from "rxjs";
 
 interface TestSchema {
   users: UsersState;
@@ -23,9 +27,10 @@ interface TestSchema {
 describe('UsersFacade', () => {
   let facade: UsersFacade;
   let store: Store<TestSchema>;
-  const createUsersEntity = (id: string, name = ''): UsersEntity => ({
+  const createUsersEntity = (id: number, name = '', email = ''): UsersEntity => ({
     id,
     name: name || `name-${id}`,
+    email
   });
 
   describe('used in NgModule', () => {
@@ -35,7 +40,13 @@ describe('UsersFacade', () => {
           StoreModule.forFeature(USERS_FEATURE_KEY, usersReducer),
           EffectsModule.forFeature([UsersEffects]),
         ],
-        providers: [UsersFacade],
+        providers: [
+          UsersFacade,
+          MockProvider(UsersService, {
+            fetchAll: () => of([])
+          }),
+          MockProvider(DepartmentsFacade),
+        ],
       })
       class CustomFeatureModule {}
 
@@ -84,7 +95,7 @@ describe('UsersFacade', () => {
 
       store.dispatch(
         UsersActions.loadUsersSuccess({
-          users: [createUsersEntity('AAA'), createUsersEntity('BBB')],
+          users: [createUsersEntity(1, 'AAA'), createUsersEntity(2, 'BBB')],
         })
       );
 
