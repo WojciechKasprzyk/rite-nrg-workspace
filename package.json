@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start": "nx run dms:serve:development",
-    "test": "nx run-many --all --target=test"
+    "test": "nx run-many --all --target=test",
+    "e2e-app": "nx run dms:serve:development --port 4201",
+    "open-cypress": "cd ./apps/dms-e2e && cypress open"
   },
   "private": true,
   "dependencies": {
