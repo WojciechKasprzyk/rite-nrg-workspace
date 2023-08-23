@@ -50,7 +50,7 @@ export class DepartmentsFacade {
     this.getDepartmentById(departmentId)
       .pipe(
         first(),
-        map((d) => (d as Department).users)
+        map((d) => (d as Department).users || [])
       ).subscribe(users => {
       this.editDepartment({
         id: departmentId,
